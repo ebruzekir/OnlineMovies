@@ -1,0 +1,44 @@
+﻿@model List<Emovies.Domain.DomainModels.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="m-3">
+        <a class= " btn btn-success"asp-controller="Movies" asp-action="Create">Add new Movie</a>
+    </div>
+
+    @for(int i=0;i<Model.Count;i++)
+    {
+        var item = Model[i];
+        if(i%3==0)
+                {
+                    @:<div class="row">
+                }
+        <div class="col-md-3 m-3" >
+            <div class="card" style="width: 18rem;height: 50rem;">
+                <img class="card-img-top" src="@item.M_Image" style="height:50%" alt="Image for Movie!" />
+                <div class="card-body " >
+                    <h5 class="card-title">@item.M_Name</h5>
+                    <p class="card-text">  Description: @item.M_Description</p>
+                    <p class="card-text">Price: @item.M_Price mkd.</p>
+                    <p class="card-text">Date: @item.time</p>
+                    <p class="card-text" style="text-decoration: solid; font-weight: bolder; -webkit-text-stroke-width: thin; color: chocolate;  font-size: large; ">Rating: @item.Rating</p>
+
+                </div>
+                <div class="card-footer  " >
+                    <a asp-controller="Movies" asp-action="AddProductToCart" asp-route-id="@item.Id " class="btn btn-info">Add to cart</a>
+                    <a asp-controller="Movies" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
+                </div>
+            </div>
+        </div>
+                if (i % 3 == 2)
+                {
+                    @: </div>
+                }
+    }
+
+
+</div>
